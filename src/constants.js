@@ -1,0 +1,3 @@
+export const ACTIONS = {
+  ADVANCE_GENERATION: 'ADVANCE_GENERATION',
+}
