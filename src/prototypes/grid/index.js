@@ -1,22 +1,30 @@
+import Cell from '../cell';
+
 const getCellKey = (x, y) => `${x},${y}`;
 
 export default class Grid {
   constructor(x, y) {
     this._grid = [];
     for (let i = 0; i < y; i++) {
-      this._grid = [...this.grid, '0'.repeat(x).split('').map(Number)]
+      this._grid = [...this._grid, '0'.repeat(x).split('').map(() => new Cell())];
     }
     this._liveCells = {};
   }
 
   addLiveCell(x, y) {
-    this._grid[y][x] = 1;
-    this._liveCells[getCellKey(x, y)] = true;
+    const cell = this.getCell(x, y);
+    if (!cell.isAlive) {
+      cell.toggleLifeState();
+      this._liveCells[getCellKey(x, y)] = true;
+    }
   }
 
   killCell(x, y) {
-    this._grid[y][x] = 0;
-    delete this._liveCells[getCellKey(x, y)];
+    const cell = this.getCell(x, y);
+    if (cell.isAlive) {
+      cell.toggleLifeState();
+      delete this._liveCells[getCellKey(x, y)];
+    }
   }
 
   getNeighbors(x, y) {
@@ -37,8 +45,16 @@ export default class Grid {
     return Object.keys(neighbors).reduce((curTotal, key) => curTotal + neighbors[key], 0);
   }
 
+  getCell(x, y) {
+    return this._grid[y][x];
+  }
+
+  getCellValue(x, y) {
+    return this.getCell(x, y) + 0;
+  }
+
   get grid() {
-    return this._grid;
+    return this._grid.map(cellRow => cellRow.map(cell => cell + 0));
   }
 
   get horizontalLength() {
@@ -62,7 +78,7 @@ export default class Grid {
   }
 
   _getANeighbor(x, y) {
-    return { [getCellKey(x, y)]: this._inBounds(x, y) ? this._grid[y][x] : null };
+    return { [getCellKey(x, y)]: this._inBounds(x, y) ? this.getCellValue(x, y) : null };
   }
 
   _getUpperLeftNeighbor(x, y) {

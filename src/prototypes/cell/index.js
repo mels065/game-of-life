@@ -8,6 +8,12 @@ export default class Cell {
     return this;
   }
 
+  copy() {
+    const newCell = new Cell();
+    if (this.isAlive) newCell.toggleLifeState();
+    return newCell;
+  }
+
   valueOf() {
     return Number(this.isAlive);
   }

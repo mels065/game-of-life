@@ -1,4 +1,5 @@
 import Grid from '../grid';
+import Cell from '../cell';
 
 describe('Grid', () => {
   it('generates a grid', () => {
@@ -94,4 +95,13 @@ describe('Grid', () => {
     grid.addLiveCell(1,2);
     expect(grid.countNeighbors(2,2)).toEqual(1);
   });
+
+  it('can get value of a cell', () => {
+    expect(new Grid(1,1).getCellValue(0, 0)).toBe(0);
+  });
+
+  it('has instances of Cell as the cells', () => {
+    console.log(new Grid(1, 1));
+    expect(new Grid(4, 3).getCell(2, 2) instanceof Cell).toBe(true);
+  })
 });
