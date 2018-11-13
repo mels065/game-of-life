@@ -101,7 +101,94 @@ describe('Grid', () => {
   });
 
   it('has instances of Cell as the cells', () => {
-    console.log(new Grid(1, 1));
     expect(new Grid(4, 3).getCell(2, 2) instanceof Cell).toBe(true);
-  })
+  });
+
+  it('can create a copy of itself', () => {
+    const grid = new Grid(3, 3);
+    expect(grid.copy().grid).toEqual(grid.grid);
+  });
+
+  it('can create a copy of itself', () => {
+    const grid = new Grid(4, 3);
+    grid.addLiveCell(0, 0);
+    grid.addLiveCell(2, 2);
+    expect(grid.copy().grid).toEqual(grid.grid);
+  });
+
+  it('kills cell if it has fewer than two neighbors', () => {
+    const grid = new Grid(5, 5);
+    grid.addLiveCell(0, 0);
+    grid.tick();
+    expect(grid.grid).toEqual([
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ]);
+  });
+
+  it('kills cell if it has fewer than two neighbors', () => {
+    const grid = new Grid(5, 5);
+    grid.addLiveCell(3, 2);
+    grid.addLiveCell(3, 3);
+    grid.tick();
+    expect(grid.grid).toEqual([
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ]);
+  });
+
+  it('kills cell if it has more than three neighbors', () => {
+    const grid = new Grid(3, 3);
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) grid.addLiveCell(i, j);
+    }
+    grid.tick();
+    expect(grid.grid).toEqual([
+      [1, 0, 1],
+      [0, 0, 0],
+      [1, 0, 1],
+    ])
+  });
+
+  it('gets alive neighbors', () => {
+    const grid = new Grid(4,4);
+    grid.addLiveCell(0,0);
+    expect(grid.getAliveNeighbors(1,1)).toEqual({
+      '0,0': 1,
+    })
+  });
+
+  it('gets the dead neighbors', () => {
+    const grid = new Grid(2, 1);
+    expect(grid.getDeadNeighbors(0,0)).toEqual({
+      '1,0': 0,
+    });
+  });
+
+  it('gets the dead neighbors', () => {
+    const grid = new Grid(2, 2);
+    expect(grid.getDeadNeighbors(0,0)).toEqual({
+      '1,0': 0,
+      '0,1': 0,
+      '1,1': 0,
+    });
+  });
+
+  it('gives life to a dead cell if it has exactly three neighbors', () => {
+    const grid = new Grid(2, 2);
+    grid.addLiveCell(0, 0);
+    grid.addLiveCell(1, 0);
+    grid.addLiveCell(1, 1);
+    grid.tick();
+    expect(grid.grid).toEqual([
+      [1, 1],
+      [1, 1]
+    ]);
+  });
 });

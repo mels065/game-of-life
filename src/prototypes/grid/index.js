@@ -1,6 +1,7 @@
 import Cell from '../cell';
 
 const getCellKey = (x, y) => `${x},${y}`;
+const parseCellKey = key => key.split(',').map(Number);
 
 export default class Grid {
   constructor(x, y) {
@@ -15,7 +16,7 @@ export default class Grid {
     const cell = this.getCell(x, y);
     if (!cell.isAlive) {
       cell.toggleLifeState();
-      this._liveCells[getCellKey(x, y)] = true;
+      this._liveCells[getCellKey(x, y)] = [x, y];
     }
   }
 
@@ -40,6 +41,22 @@ export default class Grid {
     };
   }
 
+  getAliveNeighbors(x, y) {
+    const neighbors = this.getNeighbors(x, y);
+    return Object.keys(neighbors).reduce((result, key) => 
+      neighbors[key] === 1 ? { ...result, [key]: neighbors[key] } : result,
+      {}
+    );
+  }
+
+  getDeadNeighbors(x, y) {
+    const neighbors = this.getNeighbors(x, y);
+    return Object.keys(neighbors).reduce((result, key) => 
+      neighbors[key] === 0 ? { ...result, [key]: neighbors[key] } : result,
+      {}
+    );
+  }
+
   countNeighbors(x, y) {
     const neighbors = this.getNeighbors(x, y);
     return Object.keys(neighbors).reduce((curTotal, key) => curTotal + neighbors[key], 0);
@@ -51,6 +68,34 @@ export default class Grid {
 
   getCellValue(x, y) {
     return this.getCell(x, y) + 0;
+  }
+
+  tick() {
+    let cellsToDie = [];
+    let deadCellsToGiveLife = [];
+    Object.keys(this._liveCells).forEach((key) => {
+      const cellCoord = this._liveCells[key];
+      const neighborCount = this.countNeighbors(...cellCoord);
+      if (neighborCount < 2 || neighborCount > 3) {
+        cellsToDie = [...cellsToDie, cellCoord];
+      }
+      const deadNeighbors = this.getDeadNeighbors(...cellCoord);
+      Object.keys(deadNeighbors).forEach((key2) => {
+        const deadCellCoord = parseCellKey(key2);
+        if (this.countNeighbors(...deadCellCoord) === 3) {
+          deadCellsToGiveLife = [...deadCellsToGiveLife, deadCellCoord]
+        }
+      });
+    });
+
+    cellsToDie.forEach(cellCoord => this.killCell(...cellCoord));
+    deadCellsToGiveLife.forEach(cellCoord => this.addLiveCell(...cellCoord));
+  }
+
+  copy() {
+    const gridCopy = new Grid(this.horizontalLength, this.verticalLength);
+    Object.keys(this._liveCells).forEach(key => gridCopy.addLiveCell(...this._liveCells[key]));
+    return gridCopy;
   }
 
   get grid() {
