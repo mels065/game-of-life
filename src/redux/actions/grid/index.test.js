@@ -1,5 +1,55 @@
-import { advanceGeneration } from '../grid';
+import { initializeGrid, toggleLife, advanceGeneration } from '../grid';
 import { ACTIONS } from '../../../constants';
+
+describe('initializeGrid', () => {
+  it('returns an object', () => {
+    expect(typeof initializeGrid(1, 1)).toBe('object');
+  });
+
+  it(`returns an object with type ${ACTIONS.INITIALIZE_GRID}`, () => {
+    expect(initializeGrid(1, 1).type).toBe(ACTIONS.INITIALIZE_GRID);
+  });
+
+  it(`returns a payload object with properties of gridX and gridY`, () => {
+    const action = initializeGrid(3, 4);
+    expect(action.payload).toEqual({
+      gridX: 3,
+      gridY: 4,
+    });
+  });
+
+  it(`returns a payload object with properties of gridX and gridY`, () => {
+    const action = initializeGrid(5, 8);
+    expect(action.payload).toEqual({
+      gridX: 5,
+      gridY: 8,
+    });
+  });
+});
+
+describe('toggleLife', () => {
+  it('returns an object', () => {
+    expect(typeof toggleLife(0, 0)).toBe('object');
+  });
+
+  it(`returns an object with type ${ACTIONS.TOGGLE_LIFE}`, () => {
+    expect(toggleLife(0, 0).type).toBe(ACTIONS.TOGGLE_LIFE);
+  });
+
+  it('returns a payload object with properties of cellX and cellY', () => {
+    expect(toggleLife(3, 2).payload).toEqual({
+      cellX: 3,
+      cellY: 2
+    });
+  });
+
+  it('returns a payload object with properties of cellX and cellY', () => {
+    expect(toggleLife(5, 9).payload).toEqual({
+      cellX: 5,
+      cellY: 9
+    });
+  });
+});
 
 describe('advanceGeneration', () => {
   it(`returns an object with type ${ACTIONS.ADVANCE_GENERATION}`, () => {
