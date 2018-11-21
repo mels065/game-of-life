@@ -1,19 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { toggleLife } from '../../../redux/actions/grid';
 
 import './style.css';
 
-const Cell = ({ isAlive, gridWidth, gridHeight }) => (
+const Cell = ({ isAlive, gridWidth, gridHeight, isTicking, onClick }) => (
   <div 
     className={`cell${isAlive ? ' alive' : ''}`}
     style={{
       width: `${100 / (gridWidth ? gridWidth : 1)}%`,
       height: `${100 / (gridHeight ? gridHeight : 1)}%`,
     }}
+    onClick={() => { if (!isTicking) onClick() }}
   />
 );
 
-export default Cell
+const mapStateToProps = state => (
+  {
+    isTicking: state.grid.isTicking,
+  }
+)
+
+const mapDispatchToProps = (dispatch, ownProps) => (
+  {
+    onClick: () => {
+      const { x, y } = ownProps;
+      dispatch(toggleLife(x, y));
+    }
+  }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cell);
 
 Cell.propTypes = {
   isAlive: PropTypes.bool,

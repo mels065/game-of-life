@@ -25,3 +25,12 @@ export const advanceGeneration = () => (
     type: ACTIONS.ADVANCE_GENERATION
   }
 );
+
+export const changeIsTicking = (isTicking) => (
+  {
+    type: ACTIONS.CHANGE_IS_TICKING,
+    payload: {
+      isTicking,
+    }
+  }
+);

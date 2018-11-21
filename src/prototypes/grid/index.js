@@ -7,7 +7,7 @@ export default class Grid {
   constructor(x, y) {
     this._grid = [];
     for (let i = 0; i < y; i++) {
-      this._grid = [...this._grid, '0'.repeat(x).split('').map(() => new Cell())];
+      this._grid = [...this._grid, '0'.repeat(x).split('').map((_, j) => new Cell(j, i))];
     }
     this._liveCells = {};
   }

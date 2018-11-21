@@ -4,6 +4,7 @@ import { ACTIONS } from '../../../constants';
 
 const initialState = {
   grid: new Grid(2, 2),
+  isTicking: false,
 }
 
 export default (state = initialState, action) => {
@@ -18,6 +19,10 @@ export default (state = initialState, action) => {
       if (gridCopy.getCell(cellX, cellY).isAlive) gridCopy.killCell(cellX, cellY);
       else gridCopy.addLiveCell(cellX, cellY);
       return { ...state, grid: gridCopy };
+    }
+    case ACTIONS.CHANGE_IS_TICKING: {
+      const { isTicking } = action.payload;
+      return { ...state, isTicking }
     }
     case ACTIONS.ADVANCE_GENERATION: {
       const gridCopy = state.grid.copy();

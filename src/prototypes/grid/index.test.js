@@ -191,4 +191,24 @@ describe('Grid', () => {
       [1, 1]
     ]);
   });
+
+  it('has cells that match their x coordinate value', () => {
+    const grid = new Grid(2, 2);
+    expect(grid.getCell(1, 1).x).toBe(1);
+  });
+
+  it('has cells that match their x coordinate value', () => {
+    const grid = new Grid(5, 8);
+    expect(grid.getCell(3, 5).x).toBe(3);
+  });
+
+  it('has cells that match their y coordinate value', () => {
+    const grid = new Grid(5, 8);
+    expect(grid.getCell(3, 5).y).toBe(5);
+  });
+
+  it('has cells that match their y coordinate value', () => {
+    const grid = new Grid(2, 2);
+    expect(grid.getCell(1, 1).y).toBe(1);
+  });
 });

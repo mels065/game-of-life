@@ -1,4 +1,9 @@
-import { initializeGrid, toggleLife, advanceGeneration } from '../grid';
+import {
+  initializeGrid,
+  toggleLife,
+  advanceGeneration,
+  changeIsTicking,
+} from '../grid';
 import { ACTIONS } from '../../../constants';
 
 describe('initializeGrid', () => {
@@ -54,5 +59,27 @@ describe('toggleLife', () => {
 describe('advanceGeneration', () => {
   it(`returns an object with type ${ACTIONS.ADVANCE_GENERATION}`, () => {
     expect(advanceGeneration().type).toBe(ACTIONS.ADVANCE_GENERATION);
+  });
+});
+
+describe('changeIsTicking', () => {
+  it('returns an object', () => {
+    expect(typeof changeIsTicking(true)).toBe('object');
+  });
+
+  it(`returns an object with type ${ACTIONS.CHANGE_IS_TICKING}`, () => {
+    expect(changeIsTicking(true).type).toBe(ACTIONS.CHANGE_IS_TICKING);
+  });
+
+  it(`returns an object with payload object containing isTicking as boolean value`, () => {
+    expect(changeIsTicking(true).payload).toEqual({
+      isTicking: true,
+    })
+  });
+
+  it(`returns an object with payload object containing isTicking as boolean value`, () => {
+    expect(changeIsTicking(false).payload).toEqual({
+      isTicking: false,
+    })
   });
 });

@@ -2,7 +2,12 @@ import gridReducer from '../grid';
 
 import Grid from '../../../prototypes/grid';
 
-import { initializeGrid, toggleLife, advanceGeneration } from '../../actions/grid';
+import {
+  initializeGrid,
+  toggleLife,
+  advanceGeneration,
+  changeIsTicking,
+} from '../../actions/grid';
 
 import { ACTIONS } from '../../../constants';
 
@@ -10,18 +15,21 @@ describe('gridReducer', () => {
   it('returns the default state', () => {
     expect(gridReducer(undefined, {})).toEqual({
       grid: new Grid(2, 2),
+      isTicking: false,
     });
   });
 
   it(`creates a new grid when the action type is ${ACTIONS.INITIALIZE_GRID}`, () => {
     expect(gridReducer(undefined, initializeGrid(3, 3))).toEqual({
       grid: new Grid(3, 3),
+      isTicking: false,
     })
   });
 
   it(`creates a new grid when the action type is ${ACTIONS.INITIALIZE_GRID}`, () => {
     expect(gridReducer(undefined, initializeGrid(5, 2))).toEqual({
       grid: new Grid(5, 2),
+      isTicking: false,
     })
   });
 
@@ -36,6 +44,7 @@ describe('gridReducer', () => {
     ).toEqual(
       {
         grid: expectedGrid,
+        isTicking: false,
       }
     );
   });
@@ -52,8 +61,17 @@ describe('gridReducer', () => {
     ).toEqual(
       {
         grid: new Grid(1, 1),
+        isTicking: false,
       }
     )
+  });
+
+  it('changes `isTicking` to true', () => {
+    expect(gridReducer(undefined, changeIsTicking(true)).isTicking).toBe(true);
+  });
+
+  it('changes `isTicking` to false', () => {
+    expect(gridReducer(undefined, changeIsTicking(false)).isTicking).toBe(false);
   });
 
   it('executes a tick to advance a generation', () => {
@@ -71,6 +89,7 @@ describe('gridReducer', () => {
     ).toEqual(
       {
         grid: new Grid(2, 2),
+        isTicking: false,
       }
     )
   });

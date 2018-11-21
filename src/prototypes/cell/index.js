@@ -1,6 +1,8 @@
 export default class Cell {
-  constructor() {
+  constructor(x = 0, y = 0) {
     this._isAlive = false;
+    this._x = x;
+    this._y = y
   }
 
   toggleLifeState() {
@@ -20,5 +22,13 @@ export default class Cell {
 
   get isAlive() {
     return this._isAlive;
+  }
+
+  get x() {
+    return this._x;
+  }
+
+  get y() {
+    return this._y;
   }
 }

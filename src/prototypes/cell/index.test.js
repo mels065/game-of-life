@@ -35,4 +35,20 @@ describe('Cell', () => {
     const cell = new Cell().toggleLifeState();
     expect(cell == 1 && cell.copy() == 1).toBe(true);
   });
+
+  it('has its x coordinate value', () => {
+    expect(new Cell(2, 1).x).toBe(2);
+  });
+
+  it('has its x coordinate value', () => {
+    expect(new Cell(5, 3).x).toBe(5);
+  });
+
+  it('has its y coordinate value', () => {
+    expect(new Cell(5, 3).y).toBe(3);
+  });
+
+  it('has its y coordinate value', () => {
+    expect(new Cell(2, 1).y).toBe(1);
+  });
 })

@@ -26,6 +26,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react-test-renderer": "^16.6.3"
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "react-test-renderer": "^16.6.3",
+    "redux-test-utils": "^0.3.0"
   }
 }
