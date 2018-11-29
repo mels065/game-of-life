@@ -98,6 +98,10 @@ export default class Grid {
     return gridCopy;
   }
 
+  flatten() {
+    return this._grid.reduce((flattenedCopy, row) => [...flattenedCopy, ...row], []);
+  }
+
   get grid() {
     return this._grid.map(cellRow => cellRow.map(cell => cell + 0));
   }

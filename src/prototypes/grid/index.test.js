@@ -211,4 +211,10 @@ describe('Grid', () => {
     const grid = new Grid(2, 2);
     expect(grid.getCell(1, 1).y).toBe(1);
   });
+
+  it('can return a flattened 1D copy of the grid', () => {
+    expect(new Grid(2, 2).flatten()).toEqual(
+      [new Cell(0, 0), new Cell(1, 0), new Cell(0, 1), new Cell(1, 1)]
+    );
+  });
 });

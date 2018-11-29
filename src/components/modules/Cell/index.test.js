@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { createMockStore } from 'redux-test-utils';
 
 import shallowWithStore from '../../../test-utils/shallow-with-store';
@@ -17,12 +16,7 @@ function createComponent(testState = { grid: { isTicking: false } }, opts = {}, 
 
 describe('Cell (component)', () => {
   it('renders', () => {
-    expect(createComponent()).toBeTruthy();
-  });
-
-  it('has className of "cell"', () => {
-    const component = createComponent();
-    expect(component.dive().hasClass('cell')).toBe(true);
+    expect(createComponent().dive().hasClass('cell')).toBe(true);
   });
 
   it('has a class of "alive" when isAlive is true', () => {
