@@ -10,6 +10,7 @@ class GridDisplay extends React.Component {
     const { grid } = this.props;
     return grid.flatten().map(
       cell => <Cell
+                key={`(${cell.x}),${cell.y}`}
                 isAlive = {cell.isAlive}
                 x = {cell.x}
                 y = {cell.y}
@@ -22,9 +23,14 @@ class GridDisplay extends React.Component {
   render() {
     return (
       <div className="grid">
+        {this.renderCells()}
       </div>
     );
   };
 };
 
-export default connect()(GridDisplay);
+const mapStateToProps = state => ({
+  grid: state.grid.grid,
+})
+
+export default connect(mapStateToProps)(GridDisplay);
