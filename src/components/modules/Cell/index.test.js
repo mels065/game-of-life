@@ -2,6 +2,7 @@ import React from 'react';
 import { createMockStore } from 'redux-test-utils';
 
 import shallowWithStore from '../../../test-utils/shallow-with-store';
+import renderWithRedux from '../../../test-utils/render-with-redux';
 
 import GridPrototype from '../../../prototypes/grid';
 
@@ -22,26 +23,6 @@ describe('Cell (component)', () => {
   it('has a class of "alive" when isAlive is true', () => {
     const component = createComponent(undefined, { isAlive: true })
     expect(component.dive().hasClass('cell alive')).toBe(true)
-  });
-
-  it('has a width that conforms to the grid width', () => {
-    const component = createComponent(undefined, { gridWidth: 5 });
-    expect(component.dive().prop('style').width).toBe('20%');
-  });
-
-  it('has a width that conforms to the grid width', () => {
-    const component = createComponent(undefined, { gridWidth: 4 });
-    expect(component.dive().prop('style').width).toBe('25%');
-  });
-
-  it('has a height that conforms to the grid height', () => {
-    const component = createComponent(undefined, { gridHeight: 2 });
-    expect(component.dive().prop('style').height).toBe('50%');
-  });
-
-  it('has a height that conforms to the grid height', () => {
-    const component = createComponent(undefined, { gridHeight: 10 });
-    expect(component.dive().prop('style').height).toBe('10%');
   });
 
   it('dispatches `toggleLife` when clicked', () => {
@@ -112,5 +93,43 @@ describe('Cell (component)', () => {
     );
     component.dive().simulate('click');
     expect(store.getActions().length).toBe(0);
+  });
+
+  it('has `.selectable` added as a class when not ticking', () => {
+    const testState = {
+      grid: {
+        grid: new GridPrototype(5, 5),
+        isTicking: false,
+      }
+    };
+    const { container } = renderWithRedux(
+      <Cell
+        x={0}
+        y={0}
+      />,
+      testState
+    );
+    expect(container.querySelector('.cell').classList).toContain('selectable');
+  });
+
+  it('does not have `.selectable` added as a class when ticking', () => {
+    const testState = {
+      grid: {
+        grid: new GridPrototype(5, 5),
+        isTicking: true,
+      }
+    };
+    const { container } = renderWithRedux(
+      <Cell
+        x={0}
+        y={0}
+      />,
+      testState
+    );
+    let doesContain = false;
+    for (let className of container.querySelector('.cell').classList) {
+      if (className === 'selectable') doesContain = true;
+    }
+    expect(doesContain).toBe(false);
   });
 });

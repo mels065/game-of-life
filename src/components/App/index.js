@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import Cell from '../modules/Cell';
+import GridDisplay from '../modules/GridDisplay';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Cell gridWidth={2} gridHeight={2} />
+        <GridDisplay />
       </div>
     );
   }

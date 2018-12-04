@@ -21,8 +21,17 @@ class GridDisplay extends React.Component {
   };
 
   render() {
+    const { grid: {
+      horizontalLength,
+      verticalLength,
+    } } = this.props;
+
+    const style = {
+      gridTemplateColumns: Array(horizontalLength).fill('1fr').join(' '),
+      gridTemplateRows: Array(verticalLength).fill('1fr').join(' '),
+    };
     return (
-      <div className="grid">
+      <div className="grid" style={style}>
         {this.renderCells()}
       </div>
     );

@@ -8,11 +8,7 @@ import './style.css';
 
 const Cell = ({ isAlive, gridWidth, gridHeight, isTicking, onClick }) => (
   <div 
-    className={`cell${isAlive ? ' alive' : ''}`}
-    style={{
-      width: `${100 / (gridWidth ? gridWidth : 1)}%`,
-      height: `${100 / (gridHeight ? gridHeight : 1)}%`,
-    }}
+    className={`cell${isAlive ? ' alive' : ''} ${!isTicking ? 'selectable' : ''}`}
     onClick={() => { if (!isTicking) onClick() }}
   />
 );

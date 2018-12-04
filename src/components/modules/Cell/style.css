@@ -1,8 +1,13 @@
 .cell {
   border: 1px solid #444;
-  background: #222;
+  float: left;
+  background-color: #222;
 }
 
-.cell .alive {
-  background: #052;
+.cell.alive {
+  background-color: #052;
+}
+
+.cell.selectable:hover {
+  cursor: pointer;
 }

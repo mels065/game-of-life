@@ -7,7 +7,7 @@ describe('Cell', () => {
     expect(new Cell()).toBeTruthy();
   });
 
-  it('it has a number represent the state', () => {
+  it('it has a number to represent the state', () => {
     expect(new Cell() == 0).toBe(true);
   });
 
@@ -51,4 +51,4 @@ describe('Cell', () => {
   it('has its y coordinate value', () => {
     expect(new Cell(2, 1).y).toBe(1);
   });
-})
+});
