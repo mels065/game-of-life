@@ -13,6 +13,11 @@ export default (state = initialState, action) => {
       const { gridX, gridY } = action.payload;
       return { ...state, grid: new Grid(gridX, gridY) };
     }
+    case ACTIONS.GENERATE_RANDOM_GRID: {
+      const { percentage } = action.payload;
+      const gridCopy = state.grid.copy().generateRandomGrid(percentage);
+      return { ...state, grid: gridCopy };
+    }
     case ACTIONS.TOGGLE_LIFE: {
       const { cellX, cellY } = action.payload;
       const gridCopy = state.grid.copy();

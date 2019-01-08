@@ -1,6 +1,8 @@
 import Grid from '../grid';
 import Cell from '../cell';
 
+import { useFakeRandom, useRealRandom } from '../../test-utils/random';
+
 describe('Grid', () => {
   it('generates a grid', () => {
     expect(new Grid(4, 3).grid).toEqual([
@@ -216,5 +218,33 @@ describe('Grid', () => {
     expect(new Grid(2, 2).flatten()).toEqual(
       [new Cell(0, 0), new Cell(1, 0), new Cell(0, 1), new Cell(1, 1)]
     );
+  });
+
+  it('has a `generateRandomGrid` method that creates a random configuration of cells', () => {
+    useFakeRandom();
+
+    const grid = new Grid(5, 5);
+    expect(grid.generateRandomGrid().grid).toEqual([
+      [0, 1, 0, 1, 0],
+      [1, 0, 1, 0, 1],
+      [0, 1, 0, 1, 0],
+      [1, 0, 1, 0, 1],
+      [0, 1, 0, 1, 0],
+    ]);
+
+    useRealRandom();
+  });
+
+  it('can accept a ratio for how often live cells are created in `generateRandomGrid`', () => {
+    useFakeRandom();
+
+    const grid = new Grid(2, 2);
+    // 1% chance of live cell being generated
+    expect(grid.generateRandomGrid(1).grid).toEqual([
+      [0, 0],
+      [0, 0]
+    ]);
+
+    useRealRandom();
   });
 });

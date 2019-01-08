@@ -1,5 +1,6 @@
 import {
   initializeGrid,
+  generateRandomGrid,
   toggleLife,
   advanceGeneration,
   changeIsTicking,
@@ -53,6 +54,18 @@ describe('toggleLife', () => {
       cellX: 5,
       cellY: 9
     });
+  });
+});
+
+describe('generateRandomGrid', () => {
+  it(`returns an object with type ${ACTIONS.GENERATE_RANDOM_GRID}`, () => {
+    expect(generateRandomGrid().type).toBe(ACTIONS.GENERATE_RANDOM_GRID);
+  });
+
+  it('returns an object with payload object containing `percentage` as a number between 1 and 100', () => {
+    expect(generateRandomGrid(80).payload).toEqual({
+      percentage: 80,
+    })
   });
 });
 

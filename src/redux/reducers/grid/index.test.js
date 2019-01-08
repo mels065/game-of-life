@@ -7,9 +7,12 @@ import {
   toggleLife,
   advanceGeneration,
   changeIsTicking,
+  generateRandomGrid,
 } from '../../actions/grid';
 
 import { ACTIONS } from '../../../constants';
+
+import { useFakeRandom, useRealRandom } from '../../../test-utils/random';
 
 describe('gridReducer', () => {
   it('returns the default state', () => {
@@ -92,5 +95,28 @@ describe('gridReducer', () => {
         isTicking: false,
       }
     )
+  });
+
+  it(`calls \`generateRandom\` when ${ACTIONS.GENERATE_RANDOM_GRID} is dispatched`, () => {
+    useFakeRandom();
+    
+    const expectedGrid = new Grid(2, 2);
+    expectedGrid.addLiveCell(1, 0);
+    expectedGrid.addLiveCell(1, 1);
+    expect(gridReducer(undefined, generateRandomGrid()))
+      .toEqual(
+        {
+          grid: expectedGrid,
+          isTicking: false,
+        }
+      );
+    
+    useRealRandom();
+  });
+
+  it(`passes an argument for \`percentage\` value for ${ACTIONS.GENERATE_RANDOM_GRID}`, () => {
+    const generateRandomSpy = jest.spyOn(Grid.prototype, 'generateRandomGrid');
+    gridReducer(undefined, generateRandomGrid(30));
+    expect(generateRandomSpy).toBeCalledWith(30);
   });
 });

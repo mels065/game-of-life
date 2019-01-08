@@ -10,6 +10,15 @@ export const initializeGrid = (gridX, gridY) => (
   }
 );
 
+export const generateRandomGrid = (percentage = 50) => (
+  {
+    type: ACTIONS.GENERATE_RANDOM_GRID,
+    payload: {
+      percentage,
+    }
+  }
+);
+
 export const toggleLife = (cellX, cellY) => (
   {
     type: ACTIONS.TOGGLE_LIFE,

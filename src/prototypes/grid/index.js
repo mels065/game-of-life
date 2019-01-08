@@ -102,6 +102,19 @@ export default class Grid {
     return this._grid.reduce((flattenedCopy, row) => [...flattenedCopy, ...row], []);
   }
 
+  generateRandomGrid(percentage = 50) {
+    if (percentage < 0) percentage = 0;
+    if (percentage > 100) percentage = 100;
+    for (let i = 0; i < this._grid.length; i++) {
+      for (let j = 0; j < this._grid[i].length; j++) {
+        if (Math.random() >= (100 - percentage) / 100.0) this.addLiveCell(j, i);
+        else this.killCell(j, i);
+      }
+    }
+    
+    return this;
+  }
+
   get grid() {
     return this._grid.map(cellRow => cellRow.map(cell => cell + 0));
   }
