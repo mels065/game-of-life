@@ -199,7 +199,7 @@ describe('<ControlPanel />', () => {
     const btn = container.querySelector('.tick-btn');
     fireEvent.click(btn);
 
-    jest.advanceTimersByTime(3000);
+    jest.advanceTimersByTime(1500);
     const counter = store.getActions().reduce(
       (total, action) => action.type === ACTIONS.ADVANCE_GENERATION ? total + 1 : total,
       0

@@ -33,7 +33,7 @@ class ControlPanel extends React.Component {
     if (!isTicking) {
       this.setState({
         btnText: TEXT.BTN.STOP,
-        timer: setInterval(advanceGenerationCallback, 1000)
+        timer: setInterval(advanceGenerationCallback, 500)
       });
       changeIsTickingOnClick(true);
     }
