@@ -59,50 +59,54 @@ class ControlPanel extends React.Component {
 
     return (
       <div className="control-panel">
-        <div className="grid-manip-panel">
-          <input
-            className="width-field"
-            type="number"
-            min="1"
-            max="30"
-            onChange={(event) => {
-              initializeGridOnChange(
-                Number(event.target.value),
-                grid.verticalLength,
-              );
-            }}
-            onInput={(event) => {
-              initializeGridOnChange(
-                Number(event.target.value),
-                grid.verticalLength,
-              );
-            }}
-            disabled={isTicking}
-            value={grid.horizontalLength}
-          />
+        <div className="sub-panel grid-manip-panel">
+          <label>Width&nbsp;
+            <input
+              className="grid-manip-field width-field"
+              type="number"
+              min="1"
+              max="30"
+              onChange={(event) => {
+                initializeGridOnChange(
+                  Number(event.target.value),
+                  grid.verticalLength,
+                );
+              }}
+              onInput={(event) => {
+                initializeGridOnChange(
+                  Number(event.target.value),
+                  grid.verticalLength,
+                );
+              }}
+              disabled={isTicking}
+              value={grid.horizontalLength}
+            />
+          </label>
 
-          <input
-            className="height-field"
-            type="number"
-            min="1"
-            max="30"
-            onChange={(event) => {
-              initializeGridOnChange(
-                grid.horizontalLength,
-                Number(event.target.value)
-              );
-            }}
-            onInput={(event) => {
-              initializeGridOnChange(
-                grid.horizontalLength,
-                Number(event.target.value)
-              );
-            }}
-            disabled={isTicking}
-            value={grid.verticalLength}
-          />
+          <label>Height&nbsp;
+            <input
+              className="grid-manip-field height-field"
+              type="number"
+              min="1"
+              max="30"
+              onChange={(event) => {
+                initializeGridOnChange(
+                  grid.horizontalLength,
+                  Number(event.target.value)
+                );
+              }}
+              onInput={(event) => {
+                initializeGridOnChange(
+                  grid.horizontalLength,
+                  Number(event.target.value)
+                );
+              }}
+              disabled={isTicking}
+              value={grid.verticalLength}
+            />
+          </label>
         </div>
-        <div className="random-gen-panel">
+        <div className="sub-panel random-gen-panel">
           <button
               className="random-generate-btn"
               onClick={() => {
@@ -133,7 +137,7 @@ class ControlPanel extends React.Component {
             />%
           </label>
         </div>
-        <div className="btns-panel">
+        <div className="sub-panel btns-panel">
           <button
             className="step-btn"
             onClick={advanceGenerationCallback}

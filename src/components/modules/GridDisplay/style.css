@@ -1,5 +1,8 @@
 .grid {
+  border: 10px solid #999;
+  border-radius: 10px;
   display: grid;
-  height: 300px;
-  width: 300px;
+  margin: 20px auto;
+  height: 600px;
+  width: 600px;
 }

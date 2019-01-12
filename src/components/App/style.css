@@ -1,32 +1,85 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  background: #505050;
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+}
+
 .App {
+  min-height: 100%;
+  position: relative;
+}
+
+header, footer {
+  color: #c6c6c6;
+  background: #222;
+}
+
+header {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+main {
+  padding-bottom: 120px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+footer {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-end;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
 }
 
-.App-link {
-  color: #61dafb;
+footer > h3 {
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  background: #646464;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  outline: 2px solid #2e2e23;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+li {
+  display: list-item;
+  font-size: 1.2rem;
+}
+
+.rules {
+  text-align: center;
+}
+
+.rules ol {
+  margin: 0 auto;
+  text-align: center;
+  width: 50%;
 }

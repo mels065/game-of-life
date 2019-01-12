@@ -3,7 +3,7 @@ import Grid from '../../../prototypes/grid';
 import { ACTIONS } from '../../../constants';
 
 const initialState = {
-  grid: new Grid(2, 2),
+  grid: new Grid(10, 10),
   isTicking: false,
 }
 

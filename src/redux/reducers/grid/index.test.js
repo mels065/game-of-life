@@ -17,7 +17,7 @@ import { useFakeRandom, useRealRandom } from '../../../test-utils/random';
 describe('gridReducer', () => {
   it('returns the default state', () => {
     expect(gridReducer(undefined, {})).toEqual({
-      grid: new Grid(2, 2),
+      grid: new Grid(10, 10),
       isTicking: false,
     });
   });
@@ -100,9 +100,15 @@ describe('gridReducer', () => {
   it(`calls \`generateRandom\` when ${ACTIONS.GENERATE_RANDOM_GRID} is dispatched`, () => {
     useFakeRandom();
     
-    const expectedGrid = new Grid(2, 2);
-    expectedGrid.addLiveCell(1, 0);
-    expectedGrid.addLiveCell(1, 1);
+    const expectedGrid = new Grid(10, 10);
+    let makeAlive = false;
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (makeAlive) expectedGrid.addLiveCell(j, i);
+        makeAlive = !makeAlive;
+      }
+    }
+
     expect(gridReducer(undefined, generateRandomGrid()))
       .toEqual(
         {

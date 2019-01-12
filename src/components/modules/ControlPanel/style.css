@@ -1,0 +1,21 @@
+.control-panel {
+  border: 10px solid #999;
+  border-radius: 10px;
+  display: flex;
+  padding: 50px;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 50%;
+}
+
+.control-panel button, .control-panel label {
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.control-panel input {
+  background: #222;
+  color: #c6c6c6;
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+}
