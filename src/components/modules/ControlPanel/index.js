@@ -116,12 +116,12 @@ class ControlPanel extends React.Component {
             >
               Generate Random Grid
           </button>
-          <label>
+          <label>Life Rate&nbsp;
             <input
               className="rand-percent-field"
               type="number"
               min="0"
-              max="50"
+              max="100"
               onChange={(event) => {
                 this.setState({
                   percentage: Number(event.target.value),
