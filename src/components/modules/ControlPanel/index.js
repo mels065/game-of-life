@@ -60,7 +60,7 @@ class ControlPanel extends React.Component {
     return (
       <div className="control-panel">
         <div className="sub-panel grid-manip-panel">
-          <label>Width&nbsp;
+          <label><span>Width&nbsp;</span>
             <input
               className="grid-manip-field width-field"
               type="number"
@@ -83,7 +83,7 @@ class ControlPanel extends React.Component {
             />
           </label>
 
-          <label>Height&nbsp;
+          <label><span>Height&nbsp;</span>
             <input
               className="grid-manip-field height-field"
               type="number"

@@ -13,6 +13,11 @@
   margin: 5px;
 }
 
+.grid-manip-panel label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
 .control-panel button {
   font-size: 1.6rem;
 }
