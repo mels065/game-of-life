@@ -1,21 +1,26 @@
 .control-panel {
   border: 10px solid #999;
   border-radius: 10px;
+  box-sizing: border-box;
   display: flex;
   padding: 50px;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 20px auto;
-  width: 50%;
+  width: 90%;
 }
 
-.control-panel button, .control-panel label {
-  margin-left: 10px;
-  font-size: 1.5rem;
+.control-panel button, .control-panel label, .control-panel input {
+  font-size: 2rem;
+  margin: 2px;
+}
+
+.control-panel label {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
 
 .control-panel input {
   background: #222;
   color: #c6c6c6;
   font-family: 'VT323', monospace;
-  font-size: 1.5rem;
 }

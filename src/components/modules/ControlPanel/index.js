@@ -134,7 +134,7 @@ class ControlPanel extends React.Component {
               }}
               disabled={isTicking}
               value={this.state.percentage}
-            />%
+            /><span className="percent-sign">%</span>
           </label>
         </div>
         <div className="sub-panel btns-panel">

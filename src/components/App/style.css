@@ -1,4 +1,5 @@
 html, body {
+  font-size: 8px;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -11,7 +12,6 @@ html, body {
 body {
   background: #505050;
   font-family: 'VT323', monospace;
-  font-size: 12px;
 }
 
 .App {
@@ -19,7 +19,7 @@ body {
   position: relative;
 }
 
-header, footer {
+header, footer, .rules {
   color: #c6c6c6;
   background: #222;
 }
@@ -50,6 +50,7 @@ button {
   background: #646464;
   cursor: pointer;
   font-family: 'VT323', monospace;
+  padding: 5px;
   outline: 2px solid #2e2e23;
 }
 
@@ -58,7 +59,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 h3 {
@@ -71,15 +72,19 @@ ol li {
 
 li {
   display: list-item;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  margin: 10px;
 }
 
 .rules {
+  border-radius: 5px;
+  margin: 0 auto;
   text-align: center;
+  padding: 10px;
+  width: 50%;
 }
 
 .rules ol {
-  margin: 0 auto;
-  text-align: center;
-  width: 50%;
+  text-align: left;
+  list-style-position: inside;
 }
