@@ -35,5 +35,5 @@
 .control-panel .sub-panel {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  margin: 1px;
+  margin: 3px;
 }

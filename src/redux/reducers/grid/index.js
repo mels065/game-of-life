@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
       return { ...state, grid: gridCopy };
     }
     case ACTIONS.RESET_GRID: {
-      const gridCopy = state.grid.reset();
+      const gridCopy = state.grid.copy().reset();
       return { ...state, grid: gridCopy };
     }
     default: {
