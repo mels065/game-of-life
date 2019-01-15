@@ -107,6 +107,15 @@ describe('<ControlPanel />', () => {
     expect(heightField.getAttribute('max')).toBe("30");
   });
 
+  it(`dispatches ${ACTIONS.RESET_GRID} when \`Reset\` button is clicked`, () => {
+    const store = createMockStore(testState);
+    const { container } = renderWithRedux(<ControlPanel />, testState, store);
+    fireEvent.click(container.querySelector('.reset-btn'));
+    expect(store.isActionDispatched({
+      type: ACTIONS.RESET_GRID,
+    })).toBe(true);
+  });
+
   it('advances the grid by a tick when the `Step` button is clicked', () => {
     const store = createMockStore(testState);
     const { container } = renderWithRedux(<ControlPanel />, testState, store);

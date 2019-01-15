@@ -4,6 +4,7 @@ import {
   toggleLife,
   advanceGeneration,
   changeIsTicking,
+  resetGrid,
 } from '../grid';
 import { ACTIONS } from '../../../constants';
 
@@ -94,5 +95,11 @@ describe('changeIsTicking', () => {
     expect(changeIsTicking(false).payload).toEqual({
       isTicking: false,
     })
+  });
+});
+
+describe('resetGrid', () => {
+  it(`returns an object with type ${ACTIONS.RESET_GRID}`, () => {
+    expect(resetGrid().type).toBe(ACTIONS.RESET_GRID);
   });
 });

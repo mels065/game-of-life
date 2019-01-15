@@ -8,6 +8,7 @@ import {
   advanceGeneration,
   changeIsTicking,
   generateRandomGrid,
+  resetGrid,
 } from '../../actions/grid';
 
 import { ACTIONS } from '../../../constants';
@@ -124,5 +125,14 @@ describe('gridReducer', () => {
     const generateRandomSpy = jest.spyOn(Grid.prototype, 'generateRandomGrid');
     gridReducer(undefined, generateRandomGrid(30));
     expect(generateRandomSpy).toBeCalledWith(30);
+  });
+
+  it(`resets the grid when ${ACTIONS.RESET_GRID} is dispatched`, () => {
+    expect(gridReducer(gridReducer(undefined, toggleLife(0, 0)), resetGrid())).toEqual(
+      {
+        grid: new Grid(10, 10),
+        isTicking: false,
+      }
+    );
   });
 });

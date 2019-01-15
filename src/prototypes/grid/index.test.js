@@ -247,4 +247,25 @@ describe('Grid', () => {
 
     useRealRandom();
   });
+
+  it('can be resetted so all cells are dead again', () => {
+    const grid = new Grid(2, 2);
+    grid.addLiveCell(0, 0);
+    expect(grid.reset().grid).toEqual([
+      [0, 0],
+      [0, 0],
+    ]);
+  });
+
+  it('can be resetted so all cells are dead again', () => {
+    const grid = new Grid(2, 2);
+    grid.addLiveCell(0, 0);
+    grid.addLiveCell(1, 0);
+    grid.addLiveCell(0, 1);
+    grid.addLiveCell(1, 1);
+    expect(grid.reset().grid).toEqual([
+      [0, 0],
+      [0, 0],
+    ]);
+  });
 });

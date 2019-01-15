@@ -43,3 +43,9 @@ export const changeIsTicking = (isTicking) => (
     }
   }
 );
+
+export const resetGrid = () => (
+  {
+    type: ACTIONS.RESET_GRID,
+  }
+);

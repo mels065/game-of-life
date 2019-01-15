@@ -115,6 +115,15 @@ export default class Grid {
     return this;
   }
 
+  reset() {
+    for (let i = 0; i < this._grid.length; i++) {
+      for (let j = 0; j < this._grid[0].length; j++) {
+        this.killCell(j, i);
+      }
+    }
+    return this;
+  }
+
   get grid() {
     return this._grid.map(cellRow => cellRow.map(cell => cell + 0));
   }

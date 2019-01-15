@@ -5,7 +5,8 @@ import {
   initializeGrid,
   advanceGeneration,
   changeIsTicking,
-  generateRandomGrid
+  generateRandomGrid,
+  resetGrid,
 } from '../../../redux/actions/grid';
 import { TEXT } from '../../../constants';
 
@@ -53,6 +54,7 @@ class ControlPanel extends React.Component {
       initializeGridOnChange,
       advanceGenerationCallback,
       generateRandomGridOnClick,
+      resetGridOnClick,
       isTicking
     } = this.props;
     const { btnText } = this.state;
@@ -106,7 +108,7 @@ class ControlPanel extends React.Component {
             />
           </label>
         </div>
-        <div className="sub-panel random-gen-panel">
+        <div className="sub-panel populate-manip-panel">
           <button
               className="random-generate-btn"
               onClick={() => {
@@ -136,8 +138,9 @@ class ControlPanel extends React.Component {
               value={this.state.percentage}
             /><span className="percent-sign">%</span>
           </label>
+          <button className="reset-btn" onClick={resetGridOnClick}>Reset</button>
         </div>
-        <div className="sub-panel btns-panel">
+        <div className="sub-panel tick-manip-panel">
           <button
             className="step-btn"
             onClick={advanceGenerationCallback}
@@ -172,6 +175,10 @@ const mapDispatchToProps = dispatch => ({
 
   generateRandomGridOnClick: (percentage) => {
     dispatch(generateRandomGrid(percentage))
+  },
+
+  resetGridOnClick: () => {
+    dispatch(resetGrid());
   }
 });
 
