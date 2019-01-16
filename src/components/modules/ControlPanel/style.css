@@ -3,23 +3,21 @@
   border-radius: 10px;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   margin: 20px auto;
+  padding: 5px;
   width: 90%;
+}
+
+.control-panel .sub-panel {
+  display: flex;
+  justify-content: space-around;
 }
 
 .control-panel button, .control-panel label, .control-panel input {
   font-size: 2rem;
   margin: 5px;
-}
-
-.grid-manip-panel label {
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
-
-.control-panel button {
-  font-size: 1.6rem;
 }
 
 .control-panel input {
@@ -29,11 +27,5 @@
 }
 
 .control-panel .percent-sign {
-  font-size: 4rem;
-}
-
-.control-panel .sub-panel {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  margin: 3px;
+  font-size: 3rem;
 }

@@ -108,7 +108,7 @@ class ControlPanel extends React.Component {
             />
           </label>
         </div>
-        <div className="sub-panel populate-manip-panel">
+        <div className="sub-panel rand-gen-panel">
           <button
               className="random-generate-btn"
               onClick={() => {
@@ -116,7 +116,7 @@ class ControlPanel extends React.Component {
               }}
               disabled={isTicking}
             >
-              Generate Random Grid
+              Generate Random
           </button>
           <label>Life Rate&nbsp;
             <input
@@ -138,9 +138,8 @@ class ControlPanel extends React.Component {
               value={this.state.percentage}
             /><span className="percent-sign">%</span>
           </label>
-          <button className="reset-btn" onClick={resetGridOnClick}>Reset</button>
         </div>
-        <div className="sub-panel tick-manip-panel">
+        <div className="sub-panel btn-panel">
           <button
             className="step-btn"
             onClick={advanceGenerationCallback}
@@ -149,6 +148,7 @@ class ControlPanel extends React.Component {
             Step
           </button>
           <button className="tick-btn" onClick={this.toggleTicking}>{btnText}</button>
+          <button className="reset-btn" onClick={resetGridOnClick}>Reset</button>
         </div>
       </div>
     );
