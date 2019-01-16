@@ -3,6 +3,8 @@
   border-radius: 10px;
   display: grid;
   margin: 20px auto;
+  max-height: 600px;
   height: 80vw;
+  max-width: 600px;
   width: 80vw;
 }
